@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Core · MCHarvest</title>
+  <meta name="description" content="MCHarvest Core is the gateway between your Minecraft server and the MCHarvest central server.">
+  <script>window.SITE_ROOT = "../"; window.PAGE_SECTION = "core";</script>
+  <link rel="stylesheet" href="../css/shared/main.css">
+  <link rel="stylesheet" href="../css/shared/layout.css">
+  <link rel="stylesheet" href="../css/partial/header.css">
+  <link rel="stylesheet" href="../css/partial/footer.css">
+  <link rel="stylesheet" href="../css/shared/components.css">
+  <link rel="stylesheet" href="../css/core/core.css">
+  <script src="../scripts/partial/nav.js" defer></script>
+  <script src="../scripts/partial/include.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container narrow page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">Home</a></li>
+          <li class="sep" aria-hidden="true">/</li>
+          <li><a href="../index.html#plugins">Plugins</a></li>
+          <li class="sep" aria-hidden="true">/</li>
+          <li><span aria-current="page">Core</span></li>
+        </ol>
+      </nav>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">Layer 1 plugin</p>
+        <h1 id="hero-title">MCHarvest Core</h1>
+        <p class="lead">The gateway between your Minecraft server and the MCHarvest central server. Install it whenever you use any other MCHarvest plugin.</p>
+        <div class="chip-row" aria-label="Supported servers">
+          <span class="chip">SpigotMC</span>
+          <span class="chip">PaperMC</span>
+          <span class="chip">Folia</span>
+        </div>
+      </section>
+
+      <section class="section" id="what-it-does" aria-labelledby="what-title">
+        <div class="section__head">
+          <h2 id="what-title">What it does</h2>
+        </div>
+        <ul class="feature-list">
+          <li><span><strong>One connection</strong>Opens the single connection from your Minecraft server to the central server.</span></li>
+          <li><span><strong>A gateway for every plugin</strong>Every other MCHarvest plugin sends its requests through Core, whatever layer it is in.</span></li>
+          <li><span><strong>Token stays with your server</strong>Signs each request with your central server token and never follows redirects, so the token only goes to the address you configured.</span></li>
+          <li><span><strong>No freezes</strong>Sends requests in the background, so a slow central server never pauses your game.</span></li>
+        </ul>
+      </section>
+
+      <section class="section" id="servers" aria-labelledby="servers-title">
+        <div class="section__head">
+          <h2 id="servers-title">Supported servers</h2>
+          <p>One jar runs on all three. Core detects the server when it starts and picks the matching task scheduler.</p>
+        </div>
+        <dl class="deflist">
+          <div class="deflist__row"><dt class="deflist__term">SpigotMC</dt><dd>Uses the standard Bukkit scheduler.</dd></div>
+          <div class="deflist__row"><dt class="deflist__term">PaperMC</dt><dd>Uses the standard Bukkit scheduler.</dd></div>
+          <div class="deflist__row"><dt class="deflist__term">Folia</dt><dd>Uses Folia's region-aware scheduler, so work runs on the thread that owns each part of the world.</dd></div>
+        </dl>
+      </section>
+
+      <section class="section" id="installation" aria-labelledby="install-title">
+        <div class="section__head">
+          <h2 id="install-title">Installation</h2>
+        </div>
+        <ol class="steps">
+          <li><span>Get the <strong>MCHarvestCoreEngine</strong> jar.</span></li>
+          <li><span>Put it in your server's <code>plugins</code> folder and start the server once. Core writes its settings file to <code>plugins/MCHarvestCore/config.yml</code>.</span></li>
+          <li><span>Set the central server address and token in that file, then restart the server.</span></li>
+        </ol>
+        <div class="callout callout--warn">
+          <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17.5h.01"/></svg>
+          <div class="callout__body">
+            <strong class="callout__title">Core turns itself off when settings are wrong</strong>
+            <p>If the address is empty or the timeout is not a positive number, Core logs the problem and disables itself. Fix the setting and restart.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="configuration" aria-labelledby="config-title">
+        <div class="section__head">
+          <h2 id="config-title">Configuration</h2>
+          <p>All settings live under <code>central-server</code> in <code>config.yml</code>.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Setting</th><th scope="col">What it controls</th><th scope="col">Default</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>url</code></td><td>Address of the MCHarvest central server</td><td><code>http://localhost:3000</code></td></tr>
+              <tr><td><code>token</code></td><td>Token the central server expects on every request</td><td><code>change-me</code></td></tr>
+              <tr><td><code>timeout-seconds</code></td><td>How long Core waits to connect and for each answer</td><td><code>10</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="events" aria-labelledby="events-title">
+        <div class="section__head">
+          <h2 id="events-title">Events</h2>
+          <p>Other plugins can listen to these and cancel them.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Event</th><th scope="col">When it fires</th><th scope="col">Cancellable</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Central request</td>
+                <td>Just before Core sends a request to the central server. Cancelling it stops the request, and the plugin that sent it is told it was cancelled.</td>
+                <td><span class="badge badge--ok">Yes</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="developers" aria-labelledby="dev-title">
+        <div class="section__head">
+          <h2 id="dev-title">For plugin developers</h2>
+        </div>
+        <div class="callout callout--info">
+          <svg class="callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg>
+          <div class="callout__body">
+            <p>Build against the Core API, published as <code>io.github.mcharvest:core-api</code>, and list Core as a dependency in your plugin description. The API hands you the central server gateway; Core looks after the connection.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="section__head">
+          <h2 id="faq-title">Questions</h2>
+        </div>
+        <div class="accordion">
+          <details class="acc">
+            <summary>What happens when the central server is unreachable?</summary>
+            <div class="acc__body"><p>Core tells the plugin that sent the request that it failed. Core does not retry on its own; each plugin decides what to do next.</p></div>
+          </details>
+          <details class="acc">
+            <summary>Does Core store any data?</summary>
+            <div class="acc__body"><p>No. Core only carries requests. All data is stored by the central server.</p></div>
+          </details>
+          <details class="acc">
+            <summary>Can other MCHarvest plugins run without Core?</summary>
+            <div class="acc__body"><p>They need Core to reach the central server, so install Core alongside them.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>
