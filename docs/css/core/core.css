@@ -1,0 +1,41 @@
+/* Core page only: numbered installation steps.
+   Design reference: .agents/design/layout.md (section stylesheets). */
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  counter-reset: step;
+}
+
+.steps li {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 14px 16px;
+  background: var(--glass-strong);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: var(--white);
+  font-weight: 700;
+  font-size: .9rem;
+}
+
+.steps + .callout {
+  margin-top: 16px;
+}

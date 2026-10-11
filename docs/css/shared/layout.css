@@ -1,0 +1,87 @@
+/* Silver Glass: page layout shared by every page.
+   Design reference: .agents/design/layout.md, breadcrumbs.md. */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.container.narrow,
+.narrow {
+  max-width: var(--maxw-narrow);
+}
+
+.page {
+  padding-top: 36px;
+  padding-bottom: 64px;
+}
+
+.page > * + * {
+  margin-top: 28px;
+}
+
+/* Grid and flex children may shrink below their content width, so wide
+   content scrolls inside its own box instead of the page. */
+.page > *,
+.card-grid > *,
+.split > * {
+  min-width: 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 20px;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  font-size: .9rem;
+  color: var(--ink-400);
+}
+
+.breadcrumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.breadcrumbs li + li {
+  margin-top: 0;
+}
+
+.breadcrumbs a {
+  color: var(--ink-500);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+
+.breadcrumbs .sep {
+  color: var(--silver-500);
+}
+
+.breadcrumbs [aria-current="page"] {
+  color: var(--ink-900);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  .page {
+    padding-top: 24px;
+    padding-bottom: 48px;
+  }
+}

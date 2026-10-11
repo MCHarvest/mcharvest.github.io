@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCHarvest · Minecraft plugin ecosystem</title>
+  <meta name="description" content="MCHarvest is a family of Minecraft server plugins for SpigotMC, PaperMC and Folia that work together through one central server.">
+  <script>window.SITE_ROOT = ""; window.PAGE_SECTION = "home";</script>
+  <link rel="stylesheet" href="css/shared/main.css">
+  <link rel="stylesheet" href="css/shared/layout.css">
+  <link rel="stylesheet" href="css/partial/header.css">
+  <link rel="stylesheet" href="css/partial/footer.css">
+  <link rel="stylesheet" href="css/shared/components.css">
+  <link rel="stylesheet" href="css/home/home.css">
+  <script src="scripts/partial/nav.js" defer></script>
+  <script src="scripts/partial/include.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container page">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">Minecraft server plugins</p>
+        <h1 id="hero-title">One ecosystem, one connection, every server.</h1>
+        <p class="lead">MCHarvest is a family of plugins that each cover one feature and work together through a shared central server. They run on SpigotMC, PaperMC and Folia.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="core/index.html">Start with Core</a>
+          <a class="btn" href="#how-it-works">How it works</a>
+        </div>
+        <div class="chip-row" aria-label="Supported servers">
+          <span class="chip">SpigotMC</span>
+          <span class="chip">PaperMC</span>
+          <span class="chip">Folia</span>
+        </div>
+      </section>
+
+      <section class="section" id="how-it-works" aria-labelledby="how-title">
+        <div class="section__head">
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-title">Your server stays light</h2>
+          <p>Heavy work and all saved data live on the central server, not on your Minecraft server.</p>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            </span>
+            <h3 class="card__title">Plugins</h3>
+            <p class="card__desc">Run on your Minecraft server, one feature each. They never connect to a database.</p>
+          </div>
+          <div class="card">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+            </span>
+            <h3 class="card__title">Core</h3>
+            <p class="card__desc">The only plugin that talks to the central server. Every other plugin sends its requests through Core.</p>
+          </div>
+          <div class="card">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg>
+            </span>
+            <h3 class="card__title">Central server</h3>
+            <p class="card__desc">A separate service that does the heavy processing and stores every plugin's data.</p>
+          </div>
+        </div>
+        <ol class="flow" aria-label="Path of a request">
+          <li><span class="flow__name">Plugin</span><span class="flow__where">On your server</span></li>
+          <li class="is-key"><span class="flow__name">Core</span><span class="flow__where">On your server</span></li>
+          <li><span class="flow__name">Central server</span><span class="flow__where">Separate service</span></li>
+          <li><span class="flow__name">Database</span><span class="flow__where">Behind the central server</span></li>
+        </ol>
+        <p class="flow-note">The answer travels back the same way, so your Minecraft server keeps one connection instead of one per plugin.</p>
+      </section>
+
+      <section class="section" id="plugins" aria-labelledby="plugins-title">
+        <div class="section__head">
+          <p class="eyebrow">Plugins</p>
+          <h2 id="plugins-title">Documented plugins</h2>
+          <p>Each plugin gets its own page as it is released.</p>
+        </div>
+        <div class="card-grid">
+          <a class="card" href="core/index.html">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+            </span>
+            <h3 class="card__title">Core <span class="badge badge--accent">Layer 1</span></h3>
+            <p class="card__desc">The gateway between your Minecraft server and the central server. Install it with any other MCHarvest plugin.</p>
+            <span class="card__more">Read the Core docs &rarr;</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" id="layers" aria-labelledby="layers-title">
+        <div class="section__head">
+          <p class="eyebrow">Plugin layers</p>
+          <h2 id="layers-title">How plugins depend on each other</h2>
+          <p>Plugins are grouped into layers so they never tangle into each other.</p>
+        </div>
+        <ul class="feature-list">
+          <li><span><strong>Same layer, no links</strong>Plugins in the same layer never depend on or talk to each other.</span></li>
+          <li><span><strong>Lower layers may use higher ones</strong>A plugin can use plugins from a higher layer, but only as an optional extra it can run without.</span></li>
+          <li><span><strong>Core is open to everyone</strong>Any plugin, in any layer, can use Core to reach the central server.</span></li>
+        </ul>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Layer</th><th scope="col">Plugins</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td>Agents</td></tr>
+              <tr><td>1</td><td><a href="core/index.html">Core</a>, Identity, Economy</td></tr>
+              <tr><td>2</td><td>Clan, Guild, Party, Membership</td></tr>
+              <tr><td>3</td><td>Trade, Market, Voucher, Cosmetic</td></tr>
+              <tr><td>4</td><td>Quest, Achievement, Discord</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="events" aria-labelledby="events-title">
+        <div class="section__head">
+          <p class="eyebrow">Events</p>
+          <h2 id="events-title">Plugins can react to each other</h2>
+        </div>
+        <p>Every plugin announces its main actions as server events. Other plugins can listen to them and, where it makes sense, cancel the action. That lets plugins change each other's behaviour without being tied together. Each plugin page lists its events.</p>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>

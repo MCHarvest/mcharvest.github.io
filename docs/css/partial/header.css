@@ -1,0 +1,301 @@
+/* Silver Glass: site header and navigation (partial/header.html).
+   Design reference: .agents/design/nav.md, glass.md (overlays). */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+  border-bottom: 1px solid var(--hairline);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 750;
+  font-size: 1.08rem;
+  color: var(--ink-900);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav__brand:hover {
+  color: var(--ink-900);
+}
+
+.nav__logo {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  display: block;
+}
+
+.nav__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav__links li + li {
+  margin-top: 0;
+}
+
+.nav__spacer {
+  margin-left: auto;
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: .95rem;
+  font-weight: 550;
+  color: var(--ink-700);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease);
+}
+
+.nav__link:hover {
+  background: var(--accent-soft);
+  color: var(--ink-900);
+}
+
+.nav__link.is-active {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.nav__link--cta {
+  border: 1px solid var(--hairline);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Dropdown: opens on hover, keyboard focus, or click (.is-open). */
+.nav__dd {
+  position: relative;
+}
+
+.nav__caret {
+  width: 10px;
+  height: 10px;
+  transition: transform var(--ease);
+}
+
+.nav__dd:hover .nav__caret,
+.nav__dd:focus-within .nav__caret,
+.nav__dd.is-open .nav__caret {
+  transform: rotate(180deg);
+}
+
+.nav__dd-menu {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 260px;
+  /* Covers page content, so it is opaque and never blurred (glass.md). */
+  background: var(--white);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity var(--ease), transform var(--ease), visibility var(--ease);
+}
+
+/* Hover bridge so the pointer can travel from the toggle into the menu. */
+.nav__dd-menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10px;
+  height: 10px;
+}
+
+.nav__dd:hover .nav__dd-menu,
+.nav__dd:focus-within .nav__dd-menu,
+.nav__dd.is-open .nav__dd-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.nav__dd-link {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--ink-900);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav__dd-link small {
+  color: var(--ink-500);
+  font-weight: 400;
+  font-size: .82rem;
+}
+
+.nav__dd-link:hover,
+.nav__dd-link.is-active {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+/* Mobile toggle */
+.nav__toggle {
+  display: none;
+  margin-left: auto;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__toggle-bars,
+.nav__toggle-bars::before,
+.nav__toggle-bars::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink-900);
+  transition: transform var(--ease), background var(--ease);
+}
+
+.nav__toggle-bars {
+  position: relative;
+}
+
+.nav__toggle-bars::before,
+.nav__toggle-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav__toggle-bars::before {
+  top: -6px;
+}
+
+.nav__toggle-bars::after {
+  top: 6px;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bars {
+  background: transparent;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bars::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-bars::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 899px) {
+  .nav__toggle {
+    display: inline-flex;
+  }
+
+  .nav__links {
+    position: absolute;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 12px var(--gutter) 16px;
+    max-height: calc(100vh - var(--header-h));
+    overflow-y: auto;
+    /* Covers page content, so it is opaque and never blurred (glass.md). */
+    background: var(--white);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom: 1px solid var(--hairline);
+    box-shadow: var(--shadow-md);
+    display: none;
+  }
+
+  .nav__links.is-open {
+    display: flex;
+  }
+
+  .nav__link {
+    width: 100%;
+    justify-content: space-between;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+  }
+
+  .nav__spacer {
+    display: none;
+  }
+
+  .nav__dd-menu {
+    position: static;
+    min-width: 0;
+    margin: 2px 0 6px 12px;
+    padding: 0 0 0 10px;
+    border: 0;
+    border-left: 2px solid var(--hairline);
+    border-radius: 0;
+    box-shadow: none;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav__dd-menu::before {
+    display: none;
+  }
+
+  .nav__dd.is-open .nav__dd-menu {
+    display: block;
+  }
+
+  .nav__dd:hover .nav__caret,
+  .nav__dd:focus-within .nav__caret {
+    transform: none;
+  }
+
+  .nav__dd.is-open .nav__caret {
+    transform: rotate(180deg);
+  }
+}

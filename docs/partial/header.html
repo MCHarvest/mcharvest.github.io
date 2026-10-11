@@ -1,0 +1,36 @@
+<header class="site-header">
+  <nav class="nav container" aria-label="Main">
+    <a class="nav__brand" href="{{ROOT}}index.html">
+      <svg class="nav__logo" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="mch-logo-fill" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="1" stop-color="#b9c2d0"/>
+          </linearGradient>
+        </defs>
+        <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#mch-logo-fill)" stroke="#9aa6b8"/>
+        <path d="M9 22V10l7 7 7-7v12" fill="none" stroke="#3f5872" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>MCHarvest</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav__toggle-bars" aria-hidden="true"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <ul class="nav__links" id="nav-links">
+      <li><a class="nav__link" data-section="home" href="{{ROOT}}index.html">Home</a></li>
+      <li class="nav__dd">
+        <button class="nav__link nav__dd-toggle" type="button" aria-expanded="false" aria-controls="nav-plugins">
+          Plugins
+          <svg class="nav__caret" viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path d="M1.5 3.5L5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="nav__dd-menu" id="nav-plugins">
+          <li><a class="nav__dd-link" data-section="core" href="{{ROOT}}core/index.html">Core<small>Gateway to the central server</small></a></li>
+        </ul>
+      </li>
+      <li><a class="nav__link" href="{{ROOT}}index.html#layers">Layers</a></li>
+      <li class="nav__spacer" aria-hidden="true"></li>
+      <li><a class="nav__link nav__link--cta" href="https://github.com/MCHarvest">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
